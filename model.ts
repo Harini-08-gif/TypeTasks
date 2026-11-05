@@ -11,7 +11,7 @@ export interface Task {
 let nextId = 1;
 
 // 3. Add a new task (defaults to status "todo")
-export function addTask(tasks: Task[], title: string): Task[] {
+export function addTask(tasks: Task[], title: string,status: TaskStatus): Task[] {
   const newTask: Task = {
     id: nextId++,
     title,
