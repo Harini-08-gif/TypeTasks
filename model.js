@@ -1,6 +1,6 @@
 let nextId = 1;
 // 3. Add a new task (defaults to status "todo")
-export function addTask(tasks, title) {
+export function addTask(tasks, title, status) {
     const newTask = {
         id: nextId++,
         title,
@@ -10,7 +10,7 @@ export function addTask(tasks, title) {
 }
 // 4. Mark a task as completed
 export function completeTask(tasks, id) {
-    return tasks.map((task) => task.id === id ? { ...task, status: "done" } : task);
+    return tasks.map((task) => task.id === id ? Object.assign(Object.assign({}, task), { status: "done" }) : task);
 }
 // 5. Filter tasks by status
 export function filterByStatus(tasks, status) {
@@ -23,9 +23,9 @@ export function advanceTask(tasks, id) {
         if (task.id !== id)
             return task;
         if (task.status === "todo")
-            return { ...task, status: "in-progress" };
+            return Object.assign(Object.assign({}, task), { status: "in-progress" });
         if (task.status === "in-progress")
-            return { ...task, status: "done" };
+            return Object.assign(Object.assign({}, task), { status: "done" });
         return task;
     });
 }
